@@ -59,7 +59,10 @@
 
 <main>
 <br><br><br>
-  <div></div>@yield('content')
+  <div></div>
+
+<div class="container">  @yield('content')</div>
+
 
 </main>
 

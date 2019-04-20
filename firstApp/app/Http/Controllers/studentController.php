@@ -24,7 +24,7 @@ class studentController extends Controller
     public function create()
     {
        
-        return 'u call create' ;    }
+       return view('student.create');   }
 
     /**
      * Store a newly created resource in storage.
@@ -34,8 +34,21 @@ class studentController extends Controller
      */
     public function store(Request $request)
     {
-        //
-    }
+        /*echo "<pre>";
+        print_r($request->input()); */
+        $std = new student();
+        $std->std_name/*<--- should be the name as in  data base std-name */=$request->input('student_name'/*name of the form*/);
+        $std->std_roll=$request->input('student_roll');
+        $std->std_address=$request->input('student_address');
+        $std->email=$request->input('student_email');
+        if ($std->save()) {
+            return redirect()->route('student.create')->with('success','Student recordSaved successfully...!');//with()is flash msg
+           
+        }
+        return back()->withInput();
+    
+        
+        }
 
     /**
      * Display the specified resource.
