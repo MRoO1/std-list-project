@@ -14,7 +14,8 @@ class studentController extends Controller
      */
     public function index()
     {
-        return view('show_students');    }
+        $students= Student::all();  
+        return view('show_students',['students'=> $students]);    }
 
     /**
      * Show the form for creating a new resource.
@@ -36,9 +37,21 @@ class studentController extends Controller
     {
         /*echo "<pre>";
         print_r($request->input()); */
+
+
+         // part 2
+         //$request->validate------->in case u did not flled the empty space it is gonna returned u to same page 
+        //it is not going to fuck ur head with err
+        $request->validate([
+        'student_name'=>'required',
+        'student_roll'=>'required',
+        'student_email'=>'required|unique:students,email',
+        'student_address'=>'required'
+    ]);
+
         $std = new student();
         $std->std_name/*<--- should be the name as in  data base std-name */=$request->input('student_name'/*name of the form*/);
-        $std->std_roll=$request->input('student_roll');
+         $std->std_roll=$request->input('student_roll');
         $std->std_address=$request->input('student_address');
         $std->email=$request->input('student_email');
         if ($std->save()) {
@@ -46,8 +59,23 @@ class studentController extends Controller
            
         }
         return back()->withInput();
+
+        //part 3 more secure 
+
+      /*
+        student::create([
+
+            'std_name'=>$request->input('student_name'),
+            'std_roll'=>$request->input('student_roll'),
+            'std_address'=>$request->input('student_address'),
+            'email'=>$request->input('student_email')
+ ]);
+        if($student){
+            return redirect()->route('student.create')->with('success','Student records Saved successfully..!');
+        }
+        return back()->withInput();
     
-        
+        */
         }
 
     /**

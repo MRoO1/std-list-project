@@ -10,12 +10,12 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-
+/*
 Route::get('/', function () {
-    return view('welcome');
-});
+    return view('{{student}}');
+});*/
 Route::get('/addStd','studentController@create');
 
-Route::get('/std', 'studentController@index');
+Route::get('/list', 'studentController@index');
 
 Route::resource('student'/*route name*/,'studentController'/*controller file name*/);
