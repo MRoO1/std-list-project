@@ -86,8 +86,7 @@ class studentController extends Controller
      */
     public function show(student $student)
     {
-        //
-    }
+        return view('home');    }
 
     /**
      * Show the form for editing the specified resource.
@@ -97,7 +96,8 @@ class studentController extends Controller
      */
     public function edit(student $student)
     {
-        //
+        $student = student::find($student->id);
+        return view('student.edit',['student'=>$student]);
     }
 
     /**
@@ -109,8 +109,19 @@ class studentController extends Controller
      */
     public function update(Request $request, student $student)
     {
-        //
-    }
+       // dd($student) ; 
+        $student =student::find($student->id);
+        $student->std_name=$request->student_name;
+        $student->email=$request->student_email;
+        $student->std_roll=$request->student_roll;
+        $student->std_address=$request->student_address;
+         if ($student->save()) {
+            return redirect()->route('student.index')->with('success',$student->std_name.' '.'  recordSaved successfully...!');//with()is flash msg
+           
+        }
+        return back()->withInput();
+
+         }
 
     /**
      * Remove the specified resource from storage.
@@ -120,6 +131,12 @@ class studentController extends Controller
      */
     public function destroy(student $student)
     {
-        //
+        /*$s = student::find($student->id);
+        if($s->delete()){
+            echo "success";
+        }*/
+        if ($student::destroy($student->id)) {
+            return redirect()->route('student.index')->with('attention',$student->std_name.' '.'  record has been deleted ...!');
+        }
     }
 }

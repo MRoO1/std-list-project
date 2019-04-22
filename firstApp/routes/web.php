@@ -19,3 +19,8 @@ Route::get('/addStd','studentController@create');
 Route::get('/list', 'studentController@index');
 
 Route::resource('student'/*route name*/,'studentController'/*controller file name*/);
+
+Route::get('/home','studentController@show');
+
+//Route::get('/signup','studentController@');
+//Route::get('/signIn','studentControler@show');
