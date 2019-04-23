@@ -19,27 +19,11 @@
     <header>
 
 
-
-
-
-
-
-
-
   <!-- Fixed navbar -->
   <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
     <a class="navbar-brand" href="#">{{config('app.name')}}</a>
-
-<form style="display: inline-block;" method="POST"  action="{{url('/SignIn')}}">
-         
-         <input type="hidden" name="_method" value="LogOut">
-          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" >
-     
-    </button>
-        </form>
-    
-
-
+  
+  
 
     <div class="collapse navbar-collapse" id="navbarCollapse">
       <ul class="navbar-nav mr-auto">
@@ -67,6 +51,7 @@
         <a href="" class="sign">Sign Up</a>
         <a href="" class="sign">Sign In</a>
       </div>-->
+      <button class="btn btn-outline-warning my-1 my-sm-0"   type="submit" >LogOut</button>
 
     </div>
   </nav>

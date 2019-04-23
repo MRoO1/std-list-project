@@ -1,6 +1,4 @@
-
 @extends('studentApp.Log')
-
 
 
 @section('content')
@@ -12,7 +10,7 @@
 
 <div class="container">
   @include('session.success')
-  <form action="{{url('Search')}}" method="get" class="form-inline mt-2 mt-md-0" style="float:right;">
+  <form  method="post" class="form-inline mt-2 mt-md-0" style="float:right;">
     {{csrf_field()}}
         <input class="form-control mr-sm-2" type="text" name="search" placeholder="Search" aria-label="Search">
         <button class="btn btn-outline-success my-2 my-sm-0"   type="submit">Search</button>
@@ -35,10 +33,10 @@
     </tr>
   </thead>
   <tbody>
-  	<?php  $x=1;?>
-  	@foreach($students as $student)
+  	
+  	@foreach($details as $student)
   	<tr>
-  		<td>{{$x++}}</td>
+  		<td>{{$student->id}}</td>
   		<td>{{$student->std_name}}</td>
   		<td>{{$student->email}}</td>
   		<td>{{$student->std_roll}}</td>

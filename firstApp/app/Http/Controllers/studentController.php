@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\student;
 use Illuminate\Http\Request;
+use Validator;
+use Auth;
 
 class studentController extends Controller
 {
@@ -12,6 +14,8 @@ class studentController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+
     public function index()
     {
         $students= Student::all();  
@@ -33,6 +37,112 @@ class studentController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
+    
+
+public function search(Request $request){
+
+        $search= request()->get('search');
+        if($search!=''){
+           $student= student::where('std_name','like','%'.$search.'%')->get();
+        return view('Search')->withDetails($student)->withQuery($search);
+}
+       
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+public function SignIn(){
+    return view('SignIn');
+}
+
+
+function checklogin(Request $request)
+    {
+     $user =$request->validate([
+                                'name'   => 'required|name',
+                                'password'  => 'required'   ]);
+
+     $user_data = array(
+      'name'  => $request->get('name'),
+      'password' => $request->get('password')
+     );
+
+     if(Auth::attempt($user_data))
+     {
+      return redirect('successlogin');
+     }
+     else
+     {
+      return back()->with('error', 'Wrong Login Details');
+     }
+
+    }
+
+    function successlogin()
+    {
+     return view('\home');
+    }
+
+    function logout()
+    {
+     Auth::logout();
+     return redirect()->route('SignIn')->with('success'.' User'.' has LogOut successfully...!');
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     public function store(Request $request)
     {
         /*echo "<pre>";

@@ -21,6 +21,14 @@ Route::get('/list', 'studentController@index');
 Route::resource('student'/*route name*/,'studentController'/*controller file name*/);
 
 Route::get('/home','studentController@show');
+Route::get('/Search','studentController@search');
 
-//Route::get('/signup','studentController@');
-//Route::get('/signIn','studentControler@show');
+Route::get('/SignIn','studentController@SignIn');
+	
+
+
+
+
+Route::post('/checklogin', 'studentController@checklogin');
+Route::get('/successlogin', 'studentController@successlogin');
+Route::get('/logout', 'studentController@logout');
