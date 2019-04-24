@@ -21,14 +21,16 @@ Route::get('/list', 'studentController@index');
 Route::resource('student'/*route name*/,'studentController'/*controller file name*/);
 
 Route::get('/home','studentController@show');
+Route::get('/home/about',function(){
+	return view('About');
+});
 Route::get('/Search','studentController@search');
 
-Route::get('/SignIn','studentController@SignIn');
-	
 
 
+Route::post('/checklogin', 'HomeController@checklogin');
+Route::get('/successlogin', 'HomeController@successlogin');
+Route::get('/logout', 'HomeController@logout');
+ 
 
-
-Route::post('/checklogin', 'studentController@checklogin');
-Route::get('/successlogin', 'studentController@successlogin');
-Route::get('/logout', 'studentController@logout');
+Route::get('/login', 'HomeController@index');

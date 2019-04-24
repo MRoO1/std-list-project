@@ -23,7 +23,7 @@
   <div class="card">
     <img src="pic4.png" class="card-img-top" alt="...">
     <div class="card-body">
-      <a href="#"  style=" text-decoration-line: none;"><h5 class="card-title">About Us</h5></a>
+      <a href="home/about"  style=" text-decoration-line: none;"><h5 class="card-title">About Us</h5></a>
       <p class="card-text">This is a content  is about all u wanna know about us and what this mini project is about .so enjoy and thank you </p>
       
     </div>
